@@ -10,5 +10,5 @@ ExecStartPre=-/usr/bin/docker stop %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStart=/usr/bin/docker run -d --rm -p 80:80 --name %n nginx
 
-[Install)
+[Install]
 WantedBy=multi-user.target
