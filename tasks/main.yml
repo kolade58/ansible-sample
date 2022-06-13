@@ -1,0 +1,26 @@
+---
+# tasks file for sample_role
+- name: Install Docker
+  package:
+    name: "docker"
+    state: "present"
+  notify: restart docker  
+
+# - name: Ensure Docker is started and enabled at boot.
+#  service:
+#    name: docker
+#    state: "started"
+#    enabled: "true" 
+
+- name: Daemonize container
+  copy:
+    src: web.service
+    dest: '/etc/systemd/system/web.service'
+    mode: 0644
+  notify: daemon reload
+
+- name: start web service
+  service:
+    name: web
+    state: started
+    enabled: yes            
